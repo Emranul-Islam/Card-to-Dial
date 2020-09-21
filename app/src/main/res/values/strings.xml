@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Card to Dial</string>
+    <string name="robi">Robi</string>
+    <string name="airtel">Airtel</string>
+    <string name="grameenphone">GrameenPhone</string>
+    <string name="banglalink">Banglalink</string>
+    <string name="telitalk">Telitalk</string>
+
+
+    <string name="first">ক্যামেরা দিয়ে তোলা কার্ড এর ছবি থেকে স্ক্রেচ ঘশে যতটুকুতে নাম্বার গুলা আছে তত টুকু শুধু ক্রোপ করবেন অন্যথায় কাজ হবে না।</string>
+</resources>
