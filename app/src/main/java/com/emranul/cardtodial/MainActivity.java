@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.ads.AdRequest;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(MainActivity.this, "Please Pic The Card Photo First", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     if (!showText.getText().toString().isEmpty()) {
                         btnClicked();
                     } else {
@@ -125,9 +126,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void btnClicked() {
         int id = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(id);
-        String code = (String) radioButton.getText();
-        Log.d("TAG", "btnClicked: \n :" + code);
+        String code = "";
+
+        switch (id) {
+            case R.id.radio_robi:
+                code = "*111*";
+                break;
+            case R.id.radio_airtel:
+                code = "*121*";
+                break;
+            case R.id.radio_gp:
+                code = "*123*";
+                break;
+            case R.id.radio_banglalink:
+                code = "*124*";
+                break;
+        }
+        code += value;
+
+        Log.d("TAG", "btnClicked: Dial\n"+code);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 2);
+            } else {
+                //todo: call action is here;
+            }
+        }
     }
 
     //Upload Profile Image
@@ -196,5 +221,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void how(View view) {
+        Intent intent = new Intent(this, InformationActivity.class);
+        startActivity(intent);
     }
 }
